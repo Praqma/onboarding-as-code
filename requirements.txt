@@ -1,2 +1,2 @@
 PyGithub==1.29
-pyyaml==16.12.2
+pyaml==16.12.2
