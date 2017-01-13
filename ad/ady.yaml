@@ -1,0 +1,6 @@
+!!python/object:lib.person.Person
+email: andrey.a.devyatkin@gmail.com
+fname: Andrey
+gid: andrey9kin
+lname: Devyatkin
+pid: ady
