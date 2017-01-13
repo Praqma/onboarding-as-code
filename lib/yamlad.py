@@ -4,6 +4,7 @@ import os
 import yaml
 import logging as log
 from person import Person
+from organisation import Organisation
 
 # This is what we need for onboarding https://github.com/Praqma/onboarding-as-code/issues/1
 
@@ -18,6 +19,7 @@ AD structure
 class YamlAD:
     def __init__(self, path):
         self.path = path
+        self.org_file_name = "org"
 
     def __get_filename(self, pid):
         return os.path.join(self.path, "{}.yaml".format(pid))
@@ -34,13 +36,22 @@ class YamlAD:
         log.info("Reading {} from disk {}".format(pid, file_name))
         with open(file_name, "r") as file_obj:
             pyaml = yaml.load(file_obj)
-            return Person(pid,
+            return Person(pyaml.pid,
                           pyaml.gid,
                           pyaml.fname,
                           pyaml.lname,
                           pyaml.email)
 
-        
+    def add_org(self, org):
+        file_name = self.__get_filename(self.org_file_name)
+        log.info("Saving {} on disk {}".format(org.goid, file_name))
+        log.debug("Writing: {}".format(org))
+        with open(file_name, "w") as file_obj:
+            file_obj.write(yaml.dump(org, default_flow_style=False))
 
-
-
+    def get_org(self):
+        file_name = self.__get_filename(self.org_file_name)
+        log.info("Reading org {} from the disk".format(file_name))
+        with open(file_name, "r") as file_obj:
+            pyaml = yaml.load(file_obj)
+            return Organisation(pyaml.goid, pyaml.ghoid)
