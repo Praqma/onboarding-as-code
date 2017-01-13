@@ -1,0 +1,6 @@
+!!python/object:lib.person.Person
+email: lak@praqma.net 
+fname: Lars
+gid: lakruzz
+lname: Kruze
+pid: lak

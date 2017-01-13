@@ -1,0 +1,6 @@
+!!python/object:lib.person.Person
+email: whatever@gmail.com
+fname: System Dev. Process Support
+gid: whatever
+lname: co Praqma AS
+pid: admin

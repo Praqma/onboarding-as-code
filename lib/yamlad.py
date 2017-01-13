@@ -35,12 +35,21 @@ class YamlAD:
         file_name = self.__get_filename(pid)
         log.info("Reading {} from disk {}".format(pid, file_name))
         with open(file_name, "r") as file_obj:
-            pyaml = yaml.load(file_obj)
-            return Person(pyaml.pid,
-                          pyaml.gid,
-                          pyaml.fname,
-                          pyaml.lname,
-                          pyaml.email)
+            person = yaml.load(file_obj)
+            return Person(person.pid,
+                          person.gid,
+                          person.fname,
+                          person.lname,
+                          person.email)
+
+    def get_all_accounts(self):
+        log.info("Reading all records from {}".format(self.path))
+        result = []
+        for _dirname, _suddirlist, flist in os.walk(self.path):
+            for fname in flist:
+                log.debug("Found record: {}".format(fname))
+                result.append(fname.replace(".yaml", ""))
+        return result
 
     def add_org(self, org):
         file_name = self.__get_filename(self.org_file_name)
