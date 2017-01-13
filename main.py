@@ -14,6 +14,8 @@ def parse_args(argv):
                         action="store_true")
     parser.add_argument("-n", "--dry-run", help="only print what would be executed", dest="dry",
                         action="store_true")
+    parser.add_argument("-p", "--path", help="path to the organisation directory", dest="path",
+                        required=True)
     subparsers = parser.add_subparsers(help="This is what you can do")
     parser_add = subparsers.add_parser("add", help="Go through the records and add all new users")
     parser_del = subparsers.add_parser("del", help="Go through recodrs and remove ones that are registred but not present in our records")
@@ -29,16 +31,13 @@ def main(argv):
     else:
         log.basicConfig(level=log.INFO, format=log_format)
 
-    org = Organisation("Praqma", "Praqma")
     person = Person("ady",
                 "andrey9kin",
                 "Andrey",
                 "Devyatkin",
                 "andrey.a.devyatkin@gmail.com")
-    ad = YamlAD("/Users/andrey9kin/code/onboarding-as-code/ad")
-
-    ad.add_org(org)
-    print ad.get_org(org.goid)
+    ad = YamlAD(args.path)
+    org = ad.get_org()
     ad.add_person(person)
     print ad.get_person(person.pid)
 
