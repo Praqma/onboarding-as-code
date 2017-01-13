@@ -4,7 +4,7 @@ Automating the onboarding process. Because we can :D
 
 ### Current state
 
-Implemented yaml based directory, support for automated creation/deletion of google account, setting email aliases (TODO: add to mailing lists)
+Implemented yaml based directory, support for automated creation/deletion of google account, setting email aliases
 
 ### Setup
 
@@ -53,7 +53,7 @@ Add new user:
 
 Remove user:
 
-* remove file from the directory (currently, test_directory). Please do not remove lakrus and admin!
+* remove file from the directory (currently, test_directory). ***Please do not remove lakrus and admin!***
 * run the script: python main.py -d -p $PWD/test_directory -k $PWD/test_credentials/google_service_account_private_key.json  -e admin@sysdevprosup.org del
 
 Examples:
