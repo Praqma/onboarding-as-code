@@ -1,0 +1,12 @@
+os: linux
+dist: trusty
+language: python
+python:
+  - '2.7'
+
+before_install: openssl aes-256-cbc -K $encrypted_1dc559ec7d9f_key -iv $encrypted_1dc559ec7d9f_iv -in test_credentials/key.json.enc -out test_credentials/key.json -d
+
+install: bash setup.sh
+
+script: bash -ex ci.sh
+

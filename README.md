@@ -153,5 +153,4 @@ ImportError: file_cache is unavailable when using oauth2client >= 4.0.0
 
 * Google suite: sysdevprosup.org, details: https://github.com/Praqma/onboarding-as-code/issues/4
 * GitHub test org: https://github.com/sysdevprosup
-
-
+* We have service account created for the automated tests. Encrypted key stored in test_credentials. Read more about encrypted secrets here https://docs.travis-ci.com/user/encrypting-files/
