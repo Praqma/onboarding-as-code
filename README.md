@@ -15,6 +15,16 @@ bash setup.sh # will download virtualenv, create virtualenv and install all nece
 source env/bin/activate
 ```
 
+### How to setup service account and necessary permissions
+
+You will have to create service account and authorize it to use google api's for you Google Suite. See instruction below
+
+* Go to https://console.developers.google.com/apis/credentials
+* Select Create credentials -> Service Account Key. In the next window Drop down list -> New Service Account -> Any name -> Role: Project, Owner -> Type: Json -> Create
+* Again Credentials -> Manage service accounts -> Edit service account -> Enable G Suite Domain Wide delegation
+* G Suite Admin console -> Security -> Show more -> Advanced settings -> Manage API client access -> Use service account client id in the Name field and authorize the following scopes https://www.googleapis.com/auth/admin.directory.user, https://www.googleapis.com/auth/admin.directory.domain
+* Read more here https://developers.google.com/api-client-library/python/auth/service-accounts
+
 ### Script help
 
 ```
@@ -49,12 +59,12 @@ Note! There is a dry run option that you can use to test your changes before app
 Add new user:
 
 * add new record to the directory (currently, test_directory). Simply copy existing file and fill in your values. Note! We intentionaly haven't implemented support for taken account names - you should be able to figure it out your self from the file names in directory.
-* run the script: python main.py -d -p $PWD/test_directory -k $PWD/test_credentials/google_service_account_private_key.json -e admin@sysdevprosup.org add
+* run the script: python main.py -d -p $PWD/test_directory -k < your service accoint key > -e admin@sysdevprosup.org add
 
 Remove user:
 
 * remove file from the directory (currently, test_directory). ***Please do not remove lakrus and admin!***
-* run the script: python main.py -d -p $PWD/test_directory -k $PWD/test_credentials/google_service_account_private_key.json  -e admin@sysdevprosup.org del
+* run the script: python main.py -d -p $PWD/test_directory -k < your service accoint key >  -e admin@sysdevprosup.org del
 
 Examples:
 
@@ -140,14 +150,6 @@ ImportError: file_cache is unavailable when using oauth2client >= 4.0.0
    INFO: [google_client.py:58 - delete_user() ] - Delete user ady in domain sysdevprosup.org
    INFO: [discovery.py:857 - method() ] - URL being requested: DELETE https://www.googleapis.com/admin/directory/v1/users/ady%40sysdevprosup.org?
 ```
-
-### How to setup service account and necessary permissions
-
-* Go to https://console.developers.google.com/apis/credentials
-* Select Create credentials -> Service Account Key. In the next window Drop down list -> New Service Account -> Any name -> Role: Project, Owner -> Type: Json -> Create
-* Again Credentials -> Manage service accounts -> Edit service account -> Enable G Suite Domain Wide delegation
-* G Suite Admin console -> Security -> Show more -> Advanced settings -> Manage API client access -> Use service account client id in the Name field and autorize the following scopes https://www.googleapis.com/auth/admin.directory.user, https://www.googleapis.com/auth/admin.directory.domain
-* Read more here https://developers.google.com/api-client-library/python/auth/service-accounts
 
 ### Test bed
 
