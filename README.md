@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/Praqma/onboarding-as-code.svg?branch=master)](https://travis-ci.org/Praqma/onboarding-as-code)
+
 # onboarding-as-code
 
 Automating the onboarding process. Because we can :D
