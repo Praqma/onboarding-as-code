@@ -7,6 +7,8 @@ Automating the onboarding process. Because we can :D
 ### Current state
 
 Implemented yaml based directory, support for automated creation/deletion of google account, setting email aliases
+Running CI with Travis (protected master, building pushes and pull requests + cron builds to spot changes in API's)
+Dockerized distribution through Docker Hub
 
 ### Setup
 

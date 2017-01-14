@@ -47,4 +47,7 @@ rm -f ${TEST_DIRECTORY}/${TEST_ACCOUNT}
 python main.py -d -p ${TEST_DIRECTORY} -k ${TEST_GOOGLE_KEY} -e ${TEST_GOOGLE_ADMIN_EMAIL} del
 printf "\n\n\n\n"
 
+# Test docker build
+docker build -t onboarding .
+
 echo "Ok"
