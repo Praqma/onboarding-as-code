@@ -10,7 +10,7 @@ Implemented yaml based directory, support for automated creation/deletion of goo
 Running CI with Travis (protected master, building pushes and pull requests + cron builds to spot changes in API's)
 Dockerized distribution through Docker Hub
 
-### Setup
+### Development setup
 
 Setup assumes that you are running Python 2.7, have curl and tar installed
 
@@ -23,7 +23,7 @@ source env/bin/activate
 
 You will have to create service account and authorize it to use google api's for you Google Suite. See instruction below
 
-* Go to https://console.developers.google.com/apis/credentials
+* Go to https://console.developers.google.com/apis/credentials and use admin@sysdevprosup.org to login into our test setup
 * Select Create credentials -> Service Account Key. In the next window Drop down list -> New Service Account -> Any name -> Role: Project, Owner -> Type: Json -> Create
 * Again Credentials -> Manage service accounts -> Edit service account -> Enable G Suite Domain Wide delegation
 * G Suite Admin console -> Security -> Show more -> Advanced settings -> Manage API client access -> Use service account client id in the Name field and authorize the following scopes https://www.googleapis.com/auth/admin.directory.user, https://www.googleapis.com/auth/admin.directory.domain
@@ -58,7 +58,7 @@ optional arguments:
 ```
 Note! There is a dry run option that you can use to test your changes before applying them
 
-### Workflow examples
+### Development workflow/test examples
 
 Add new user:
 
@@ -69,6 +69,10 @@ Remove user:
 
 * remove file from the directory (currently, test_directory). ***Please do not remove lakrus and admin!***
 * run the script: python main.py -d -p $PWD/test_directory -k < your service accoint key >  -e admin@sysdevprosup.org del
+
+### Vision for production setup
+
+In production we won't be using this repo. All we need is packaged to a Docker image and we should setup a separate private repo with directory where we will store info about all accounts.
 
 Examples:
 
@@ -83,7 +87,7 @@ lname: Devyatkin
 pid: ady
 
 # Creating account
-(env) Andreys-MacBook-Pro:onboarding-as-code andrey9kin$ python main.py -d -p $PWD/test_directory -k $PWD/test_credentials/google_service_account_private_key.json -e admin@sysdevprosup.org add
+(env) Andreys-MacBook-Pro:onboarding-as-code andrey9kin$ python main.py -d -p $PWD/test_directory -k ~/.gs/test-key.json -e admin@sysdevprosup.org add
    INFO: [google_client.py:16 - authorize() ] - Authorizing credentials
    INFO: [google_client.py:23 - authorize() ] - Building service
 WARNING: [_helpers.py:132 - positional_wrapper() ] - build() takes at most 2 positional arguments (3 given)
@@ -124,7 +128,7 @@ ImportError: file_cache is unavailable when using oauth2client >= 4.0.0
 (env) Andreys-MacBook-Pro:onboarding-as-code andrey9kin$ mv test_directory/ady.yaml .
 
 # Delete account in Google
-(env) Andreys-MacBook-Pro:onboarding-as-code andrey9kin$ python main.py -d -p $PWD/test_directory -k $PWD/test_credentials/google_service_account_private_key.json -e admin@sysdevprosup.org del
+(env) Andreys-MacBook-Pro:onboarding-as-code andrey9kin$ python main.py -d -p $PWD/test_directory -k ~/.gs/test-key.json -e admin@sysdevprosup.org del
    INFO: [google_client.py:16 - authorize() ] - Authorizing credentials
    INFO: [google_client.py:23 - authorize() ] - Building service
 WARNING: [_helpers.py:132 - positional_wrapper() ] - build() takes at most 2 positional arguments (3 given)
