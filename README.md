@@ -1,7 +1,4 @@
 [![Build Status](https://api.travis-ci.org/Praqma/onboarding-as-code.svg?branch=master)](https://travis-ci.org/Praqma/onboarding-as-code)
----
-maintainer: andrey9kin
----
 
 # onboarding-as-code
 
